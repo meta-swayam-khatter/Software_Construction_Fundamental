@@ -116,10 +116,8 @@ public class StaticCheckingAndCodeReview2 {
         
         System.out.println("Completion time for each process: ");
         obj.printArray(completion);
-        
         System.out.println("Waiting time for each process: ");
         obj.printArray(waiting);
-        
         System.out.println("Turn Around time for each process: ");
         obj.printArray(turnAround);
 

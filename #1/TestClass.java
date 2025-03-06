@@ -25,4 +25,14 @@ public class TestClass {
     void testDeleteItem() {
         cart.deleteItem(testItem);
     }
+
+    public static void main(String[] args) {
+        TestClass test = new TestClass();
+        test.testCreateItem();
+        test.testAddToCart();
+        test.testDisplayQty();
+        test.testUpdateQty();
+        test.testDisplayBill();
+        test.testDeleteItem();
+    }
 }

@@ -18,6 +18,11 @@ class Item {
 class ShoppingCart {
     HashMap<Item, Integer> Cart = new HashMap<Item, Integer>();
 
+    Item createItem(String Name, String Description, int Price) {
+        Item newItem = new Item(Name, Description, Price);
+        return newItem;
+    }
+
     void addToCart(Item item, int quantity) {
         if(Cart.get(item) != null) {
             System.out.println("This item is already present in the cart !!");
@@ -80,7 +85,7 @@ class ShoppingCart {
         ShoppingCart shoppingcart = new ShoppingCart();
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Choose your option:\n0. Exit\n1. Add\n2. Display Quantity\n3. Update Quantity\n4. Delete Item\n5. Display Bill");
+        System.out.println("Choose your option:\n0. Exit\n1. Add\n2. Display Quantity\n3. Update Quantity\n4. Delete Item\n5. Display Bill\n6. Create Item");
         int input = sc.nextInt();
         int item;
         Item ITEM;
@@ -88,6 +93,7 @@ class ShoppingCart {
         while(input != 0) {
             switch(input){
                 case 0:
+                    System.out.println("Exiting..................");
                     break;
                 case 1:
                     //take input for item
@@ -152,12 +158,26 @@ class ShoppingCart {
                 case 5:
                     double bill = shoppingcart.displayBill();
                     System.out.println("Total bill is: " + bill);
+                    System.out.println();
                     break;
+                case 6:
+                    System.out.println("Enter the name of the Item: (without spaces)");
+                    String name = sc.next();
+                    sc.nextLine();
+                    System.out.println("Enter the description of the Item: ");
+                    String desc = sc.nextLine();
+                    System.out.println("Enter the price of the Item: ");
+                    int price = sc.nextInt();
+                    Item temp = shoppingcart.createItem(name, desc, price);
+                    int size = Items.size();
+
+                    Items.put(size+1, temp);
+                    System.out.println("Item created Successfully!!");
                 default:
                     System.out.println("Choose a valid option!!");
                     break;
             }
-            System.out.println("Choose your option:\n0. Exit\n1. Add\n2. Display Quantity\n3. Update Quantity\n4. Delete Item\n5. Display Bill");
+            System.out.println("Choose your option:\n0. Exit\n1. Add\n2. Display Quantity\n3. Update Quantity\n4. Delete Item\n5. Display Bill\n6. Create Item");
             input = sc.nextInt();
         }
     }

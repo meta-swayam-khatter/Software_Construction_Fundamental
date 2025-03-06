@@ -15,7 +15,7 @@ class Item {
     }
 }
 
-class ShoppingCart {
+public class ShoppingCart {
     HashMap<Item, Integer> Cart = new HashMap<Item, Integer>();
 
     Item createItem(String Name, String Description, int Price) {
@@ -180,5 +180,6 @@ class ShoppingCart {
             System.out.println("Choose your option:\n0. Exit\n1. Add\n2. Display Quantity\n3. Update Quantity\n4. Delete Item\n5. Display Bill\n6. Create Item");
             input = sc.nextInt();
         }
+        sc.close();
     }
 }

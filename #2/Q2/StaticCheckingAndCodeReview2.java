@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class JobScheduler {
-    int[][] jobs = {{0,10}, {6,20}, {60,10}, {110,5}};
+    // int[][] jobs = {{0,10}, {6,20}, {60,10}, {110,5}};
+    ArrayList<ArrayList<Integer>> jobs = new ArrayList<ArrayList<Integer>>();
 
     /*
      * this function calculates the completion time of all the jobs and return them in an array 
@@ -12,9 +13,9 @@ class JobScheduler {
         ArrayList<Integer> completionTime = new ArrayList<>();
         try {
             int currentTime = 0;
-            for(int index = 0; index<jobs.length; index++) {
-                int arrivalTime = jobs[index][0];
-                int burstTime = jobs[index][1];
+            for(int index = 0; index<jobs.size(); index++) {
+                int arrivalTime = jobs.get(index).get(0);
+                int burstTime = jobs.get(index).get(1);
                 if(currentTime < arrivalTime) {
                     currentTime = arrivalTime;
                 }
@@ -35,9 +36,9 @@ class JobScheduler {
         ArrayList<Integer> waitingTime = new ArrayList<>();
         try {
             ArrayList<Integer> completionTime = calculateCompletionTime();
-            for(int index = 0; index<jobs.length; index++) {
-                int arrivalTime = jobs[index][0];
-                int burstTime = jobs[index][1];
+            for(int index = 0; index<jobs.size(); index++) {
+                int arrivalTime = jobs.get(index).get(0);
+                int burstTime = jobs.get(index).get(1);
                 int waitTime = completionTime.get(index) - arrivalTime - burstTime;
                 waitingTime.add(waitTime);
             }
@@ -55,8 +56,8 @@ class JobScheduler {
         ArrayList<Integer> turnAroundTime = new ArrayList<>();
         try {
             ArrayList<Integer> completionTIme = calculateCompletionTime();
-            for(int index = 0; index<jobs.length; index++) {
-                int arrivalTime = jobs[index][0];
+            for(int index = 0; index<jobs.size(); index++) {
+                int arrivalTime = jobs.get(index).get(0);
                 int turnAround = completionTIme.get(index) - arrivalTime;
                 turnAroundTime.add(turnAround);
             }
@@ -129,13 +130,42 @@ public class StaticCheckingAndCodeReview2 {
         }
     }
 
+    /*
+     * this function is used to add jobs into the ArrayList
+    */
+    void addJobs(ArrayList<ArrayList<Integer>> jobs, int num) {
+        Scanner sc = new Scanner(System.in);
+        try{
+            for(int index=0; index<num; index++){
+                System.out.println(jobs.size());
+                System.out.println("Enter the arrival time for job " + (jobs.size() + 1) + ": ");
+                int arrivalTime = sc.nextInt();
+                System.out.println("Enter the burst time for job " + (jobs.size() + 1) + ": ");
+                int burstTime = sc.nextInt();
+
+                ArrayList<Integer> job = new ArrayList<>();
+                job.add(arrivalTime);
+                job.add(burstTime);
+
+                jobs.add(job);
+            }
+            System.out.println("Jobs added successfully!!\n");
+        } catch (Exception e) {
+            System.out.println("Error occured while adding a job: " + e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
         JobScheduler scheduler = new JobScheduler();
         StaticCheckingAndCodeReview2 obj = new StaticCheckingAndCodeReview2();
         Scanner sc = new Scanner(System.in);
-        
+
+        System.out.println("Enter the number of jobs you want to add: ");
+        int num = sc.nextInt();
+        obj.addJobs(scheduler.jobs, num);
+
         while(true) {
-            System.out.println("Enter a choice: \n1. Calculate Completion time\n2. Calculate Waiting time\n3. Calculate Turn Around time\n4. Calculate Average waiting time\n5. Find maximum waiting time\n0. Exit");
+            System.out.println("Enter a choice: \n1. Calculate Completion time\n2. Calculate Waiting time\n3. Calculate Turn Around time\n4. Calculate Average waiting time\n5. Find maximum waiting time\n6. Add more jobs\n0. Exit");
             int choice = sc.nextInt();
 
             if(choice == 0) {
@@ -169,7 +199,14 @@ public class StaticCheckingAndCodeReview2 {
                     System.out.println("Maximum waiting time is: " + scheduler.calculateMaximumWaitingTIme() + "\n");
                     break;
 
+                case 6:
+                    System.out.println("Enter the number of jobs you want to add: ");
+                    num = sc.nextInt();
+                    obj.addJobs(scheduler.jobs, num);
+                    break;
+
                 default:
+                    System.out.println("Enter a valid choice!!\n");
                     break;
             }
         }

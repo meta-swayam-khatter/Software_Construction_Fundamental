@@ -1,8 +1,13 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 class JobScheduler {
     int[][] jobs = {{0,10}, {6,20}, {60,10}, {110,5}};
 
+    /*
+     * this function calculates the completion time of all the jobs and return them in an array 
+     * completion time = arrival time + waiting time + burst time (OR) starting time + burst time
+    */
     ArrayList<Integer> calculateCompletionTime() {
         ArrayList<Integer> completionTime = new ArrayList<>();
         try {
@@ -22,6 +27,10 @@ class JobScheduler {
         return completionTime;
     }
 
+    /*
+     * this function calculates the waiting time of all the jobs and return them in an array
+     * waiting time = completion time - arrival time - burst time
+    */
     ArrayList<Integer> calculateWaitingTime() {
         ArrayList<Integer> waitingTime = new ArrayList<>();
         try {
@@ -38,6 +47,10 @@ class JobScheduler {
         return waitingTime;
     }
 
+    /*
+     * this function calculates the turn around time of all the jobs and retuen them in an array
+     * turn around time = completion time - arrival time
+    */
     ArrayList<Integer> calculateTurnAroundTime() {
         ArrayList<Integer> turnAroundTime = new ArrayList<>();
         try {
@@ -53,6 +66,9 @@ class JobScheduler {
         return turnAroundTime;
     }
 
+    /*
+     * this function calcultes the average waiting time of all the jobs
+     */
     float calculateAverageWaitingTime() {
         float averageWaitingTime = 0;
         try {
@@ -71,6 +87,9 @@ class JobScheduler {
         return averageWaitingTime;
     }
 
+    /*
+     * this function calculates the maximum waiting time from all the jobs
+    */
     float calculateMaximumWaitingTIme() {
         float maximumWaitingTime = 0;
         try {
@@ -92,6 +111,9 @@ class JobScheduler {
 }
 
 public class StaticCheckingAndCodeReview2 {
+    /*
+     * this function prints the array given in the argument
+    */
     void printArray(ArrayList<Integer> arr) {
         try{
             if(arr.size() == 0){
@@ -101,6 +123,7 @@ public class StaticCheckingAndCodeReview2 {
             for(int index = 0; index < arr.size(); index++) {
                 System.out.println(arr.get(index));
             }
+            System.out.println();
         } catch(Exception e) {
             System.out.println("Error while printing array: " + e.getMessage());
         }
@@ -109,20 +132,47 @@ public class StaticCheckingAndCodeReview2 {
     public static void main(String[] args) {
         JobScheduler scheduler = new JobScheduler();
         StaticCheckingAndCodeReview2 obj = new StaticCheckingAndCodeReview2();
-
-        ArrayList<Integer> completion = scheduler.calculateCompletionTime();
-        ArrayList<Integer> waiting = scheduler.calculateWaitingTime();
-        ArrayList<Integer> turnAround = scheduler.calculateTurnAroundTime();
+        Scanner sc = new Scanner(System.in);
         
-        System.out.println("Completion time for each process: ");
-        obj.printArray(completion);
-        System.out.println("Waiting time for each process: ");
-        obj.printArray(waiting);
-        System.out.println("Turn Around time for each process: ");
-        obj.printArray(turnAround);
+        while(true) {
+            System.out.println("Enter a choice: \n1. Calculate Completion time\n2. Calculate Waiting time\n3. Calculate Turn Around time\n4. Calculate Average waiting time\n5. Find maximum waiting time\n0. Exit");
+            int choice = sc.nextInt();
 
-        System.out.println("Average waiting time: " + scheduler.calculateAverageWaitingTime());
+            if(choice == 0) {
+                System.out.println("Exiting..........\n");
+                break;
+            }
+            switch (choice) {
+                case 1:
+                    System.out.println("Completion time for all the jobs: ");
+                    ArrayList<Integer> completion = scheduler.calculateCompletionTime();
+                    obj.printArray(completion);
+                    break;
+                
+                case 2:
+                    System.out.println("Waiting time for all the jobs: ");
+                    ArrayList<Integer> waiting = scheduler.calculateWaitingTime();
+                    obj.printArray(waiting);
+                    break;
 
-        System.out.println("Maximum waiting time: " + scheduler.calculateMaximumWaitingTIme());
+                case 3:
+                    System.out.println("Turn Around time for all the jobs: ");
+                    ArrayList<Integer> turnAround = scheduler.calculateTurnAroundTime();
+                    obj.printArray(turnAround);
+                    break;
+
+                case 4:
+                    System.out.println("Average waiting time is: " + scheduler.calculateAverageWaitingTime() + "\n");
+                    break;
+
+                case 5:
+                    System.out.println("Maximum waiting time is: " + scheduler.calculateMaximumWaitingTIme() + "\n");
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        sc.close();
     }
 }

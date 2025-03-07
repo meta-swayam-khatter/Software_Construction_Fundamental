@@ -134,14 +134,13 @@ public class StaticCheckingAndCodeReview2 {
      * this function is used to add jobs into the ArrayList
     */
     void addJobs(ArrayList<ArrayList<Integer>> jobs, int num) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         try{
             for(int index=0; index<num; index++){
-                System.out.println(jobs.size());
                 System.out.println("Enter the arrival time for job " + (jobs.size() + 1) + ": ");
-                int arrivalTime = sc.nextInt();
+                int arrivalTime = scan.nextInt();
                 System.out.println("Enter the burst time for job " + (jobs.size() + 1) + ": ");
-                int burstTime = sc.nextInt();
+                int burstTime = scan.nextInt();
 
                 ArrayList<Integer> job = new ArrayList<>();
                 job.add(arrivalTime);

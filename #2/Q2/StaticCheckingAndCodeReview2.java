@@ -112,10 +112,11 @@ class JobScheduler {
 }
 
 public class StaticCheckingAndCodeReview2 {
+   static Scanner sc = new Scanner(System.in);
     /*
      * this function prints the array given in the argument
     */
-    void printArray(ArrayList<Integer> arr) {
+    static void printArray(ArrayList<Integer> arr) {
         try{
             if(arr.size() == 0){
                 System.out.println("Array is empty!!");
@@ -133,14 +134,14 @@ public class StaticCheckingAndCodeReview2 {
     /*
      * this function is used to add jobs into the ArrayList
     */
-    void addJobs(ArrayList<ArrayList<Integer>> jobs, int num) {
-        Scanner scan = new Scanner(System.in);
+    static void addJobs(ArrayList<ArrayList<Integer>> jobs, int num) {
+        // Scanner scan = new Scanner(System.in);
         try{
             for(int index=0; index<num; index++){
                 System.out.println("Enter the arrival time for job " + (jobs.size() + 1) + ": ");
-                int arrivalTime = scan.nextInt();
+                int arrivalTime = sc.nextInt();
                 System.out.println("Enter the burst time for job " + (jobs.size() + 1) + ": ");
-                int burstTime = scan.nextInt();
+                int burstTime = sc.nextInt();
 
                 ArrayList<Integer> job = new ArrayList<>();
                 job.add(arrivalTime);
@@ -152,16 +153,15 @@ public class StaticCheckingAndCodeReview2 {
         } catch (Exception e) {
             System.out.println("Error occured while adding a job: " + e.getMessage());
         }
+        // scan.close();
     }
 
     public static void main(String[] args) {
         JobScheduler scheduler = new JobScheduler();
-        StaticCheckingAndCodeReview2 obj = new StaticCheckingAndCodeReview2();
-        Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter the number of jobs you want to add: ");
         int num = sc.nextInt();
-        obj.addJobs(scheduler.jobs, num);
+        addJobs(scheduler.jobs, num);
 
         while(true) {
             System.out.println("Enter a choice: \n1. Calculate Completion time\n2. Calculate Waiting time\n3. Calculate Turn Around time\n4. Calculate Average waiting time\n5. Find maximum waiting time\n6. Add more jobs\n0. Exit");
@@ -175,19 +175,19 @@ public class StaticCheckingAndCodeReview2 {
                 case 1:
                     System.out.println("Completion time for all the jobs: ");
                     ArrayList<Integer> completion = scheduler.calculateCompletionTime();
-                    obj.printArray(completion);
+                    printArray(completion);
                     break;
                 
                 case 2:
                     System.out.println("Waiting time for all the jobs: ");
                     ArrayList<Integer> waiting = scheduler.calculateWaitingTime();
-                    obj.printArray(waiting);
+                    printArray(waiting);
                     break;
 
                 case 3:
                     System.out.println("Turn Around time for all the jobs: ");
                     ArrayList<Integer> turnAround = scheduler.calculateTurnAroundTime();
-                    obj.printArray(turnAround);
+                    printArray(turnAround);
                     break;
 
                 case 4:
@@ -201,7 +201,7 @@ public class StaticCheckingAndCodeReview2 {
                 case 6:
                     System.out.println("Enter the number of jobs you want to add: ");
                     num = sc.nextInt();
-                    obj.addJobs(scheduler.jobs, num);
+                    addJobs(scheduler.jobs, num);
                     break;
 
                 default:

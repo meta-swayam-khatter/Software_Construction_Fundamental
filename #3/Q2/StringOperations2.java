@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 class Marksheet {
-    ArrayList<Integer> marks;
+    ArrayList<Integer> marks = new ArrayList<>();
 
     /**
      * this function logs errors in error.txt file
@@ -86,7 +86,9 @@ class Marksheet {
                     passed++;
                 }
             }
-            float passedPercentage = (marks.size()/passed)*100;
+            System.out.println("passed: " + passed + " total: " +  marks.size());
+            double passedPercentage = (passed/(double)marks.size())*100;
+            System.out.println("passed percentage: " + passedPercentage);
             return Math.round(passedPercentage*100)/100;
         } catch (Exception e) {
             logError(e);
@@ -106,7 +108,7 @@ public class StringOperations2 {
     static void setMarks(ArrayList<Integer> marks, int num) {
         try {
             for(int index=0; index<num; index++) {
-                System.out.println("Enter the grade of student " + (index + 1) + " : ");
+                System.out.print("Enter the grade of student " + (index + 1) + " : ");
                 int mark = sc.nextInt();
                 marks.add(mark);
             }
@@ -116,10 +118,40 @@ public class StringOperations2 {
     }
 
     public static void main(String[] args) {
-        setMarks(obj.marks, 5);
-        obj.averageMarks();
-        obj.maximumMarks();
-        obj.minimumMarks();
-        obj.studentsPassed();
+        System.out.println("Enter the number of students: ");
+        int num = sc.nextInt();
+        setMarks(obj.marks, num);
+
+        while(true) {
+            System.out.println("Enter you choice: \n1. Average marks\n2. Maximum marks\n3. Minimum marks\n4. Percentage of students passed\n0. Exit");
+            int choice = sc.nextInt();
+
+            if(choice == 0) {
+                System.out.println("Exiting..........\n");
+                break;
+            }
+
+            switch(choice) {
+                case 1:
+                    System.out.println("Average marks of all the " + obj.marks.size() + " students is: " + obj.averageMarks() + "\n");
+                    break;
+
+                case 2:
+                    System.out.println("Maximum marks from all the " + obj.marks.size() + " students is: " + obj.maximumMarks() + "\n");
+                    break;
+
+                case 3:
+                    System.out.println("Minimum marks from all the " + obj.marks.size() + " students is: " + obj.minimumMarks() + "\n");
+                    break;
+
+                case 4:
+                    System.out.println("Percentage of students passed out of all the " + obj.marks.size() + " students is: " + obj.studentsPassed() + "\n");
+                    break;
+
+                default:
+                    System.out.println("Enter a valid choice!!\n");
+                    break;
+            }
+        }
     }
 }

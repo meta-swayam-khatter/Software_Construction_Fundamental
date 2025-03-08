@@ -3,7 +3,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 class Operations {
-
     /**
      * this function logs errors in error.txt file
      * @param e exception
@@ -15,7 +14,6 @@ class Operations {
             System.out.println("Failed to log the error!!");
         }
     }
-
 
     /**
      * checks if the two strings are equal or not
@@ -105,7 +103,7 @@ class Operations {
     }
 }
 
-public class StringOperations {
+public class StringOperations1 {
     static String string;
     static Scanner sc = new Scanner(System.in);
 

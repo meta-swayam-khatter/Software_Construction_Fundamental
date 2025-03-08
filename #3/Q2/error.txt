@@ -1,0 +1,8 @@
+Cannot invoke "java.util.ArrayList.size()" because "this.marks" is null
+Cannot invoke "java.util.ArrayList.get(int)" because "this.marks" is null
+Cannot invoke "java.util.ArrayList.get(int)" because "this.marks" is null
+Cannot invoke "java.util.ArrayList.size()" because "this.marks" is null
+Cannot invoke "java.util.ArrayList.size()" because "this.marks" is null
+Cannot invoke "java.util.ArrayList.get(int)" because "this.marks" is null
+Cannot invoke "java.util.ArrayList.get(int)" because "this.marks" is null
+Cannot invoke "java.util.ArrayList.size()" because "this.marks" is null

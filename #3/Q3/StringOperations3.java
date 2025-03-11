@@ -66,7 +66,7 @@ class Area {
      */
     double circle(double radius) {
         try {
-            double pi = 3.14;
+            double pi = (double)22/7;
             return (pi * Math.pow(radius, 2));
         } catch (Exception e) {
             logError(e);

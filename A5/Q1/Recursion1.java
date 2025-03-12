@@ -19,14 +19,27 @@ class MathProblem {
      * finds the lcm of 2 numbers
      * @param x user input1 
      * @param y user input2
+     * @param temp temp variable to compute the LCM (0 by default)
      * @return lcm of x and y
      */
-    int lcm(int x, int y) {
+    int lcm(int x, int y, int temp) {
         if(x<-0 || y<=0) {
             throw new ArithmeticException("Only positive integers allowed!!\n");
         }
         try {
-            return (x*y/hcf(x, y));
+            if(x>y) {
+                temp += x;
+            } else if(x<y) {
+                temp +=y;
+            } else {
+                return x;
+            }
+
+            if(temp%x == 0 && temp%y == 0) {
+                return temp;
+            } else {
+                return lcm(x, y, temp);
+            }
         } catch (Exception e) {
             logError(e);
             return -1;
@@ -59,7 +72,7 @@ public class Recursion1 {
         System.out.println("Enter the value of y: ");
         int y = sc.nextInt();
 
-        System.out.println("LCM of " + x + " and " + y + " is: " + obj.lcm(x, y));
+        System.out.println("LCM of " + x + " and " + y + " is: " + obj.lcm(x, y, 0));
         System.out.println("HCF of " + x + " and " + y + " is: " + obj.hcf(x, y));
         
         sc.close();

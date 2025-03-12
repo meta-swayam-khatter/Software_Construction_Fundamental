@@ -7,7 +7,7 @@ public class Recursion1Test {
 
     @Test
     public void lcmTest() {
-        assertEquals(40, obj.lcm(10, 8));
+        assertEquals(40, obj.lcm(10, 8, 0));
     }
 
     @Test

@@ -298,12 +298,6 @@ public class Abstract1 {
                     break;
             }
         }
-        // IntSet obj1 = new IntSet(new int[]{2,45,55,565,24,66,78});
-        // IntSet obj2 = new IntSet(new int[]{45,24,78});
-
-        // IntSet unionArr = new IntSet(new int[]{});
-        // unionArr = IntSet.getUnion(obj1, obj2);
-
-        // unionArr.printSet();
+        sc.close();
     }
 }

@@ -13,6 +13,10 @@ class Poly {
         this.terms = terms;
     }
 
+    public int[][] getTerms() {
+        return this.terms;
+    }
+
     /**
      * this function logs errors in error.txt file
      * @param e exception

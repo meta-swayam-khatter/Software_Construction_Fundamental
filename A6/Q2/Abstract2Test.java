@@ -1,5 +1,6 @@
 package A6.Q2;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,8 +20,13 @@ public class Abstract2Test {
         assertEquals(3, obj1.degree());
     }
 
-    // @Test
-    // public void addPolyTest() {
-    //     assertEquals(new Poly(new int[][]{{2,1}, {6,2}, {10,3}}), Poly.addPoly(obj1, obj2));
-    // }
+    @Test
+    public void addPolyTest() {
+        assertArrayEquals(new Poly(new int[][]{{2,1}, {6,2}, {10,3}}).getTerms(), Poly.addPoly(obj1, obj2).getTerms());
+    }
+
+    @Test
+    public void multiplyPolyTest() {
+        assertArrayEquals(new Poly(new int[][]{{1,2}, {6,3}, {19,4}, {30,5}, {25,6}}).getTerms(), Poly.multiplyPoly(obj1, obj2).getTerms());
+    }
 }

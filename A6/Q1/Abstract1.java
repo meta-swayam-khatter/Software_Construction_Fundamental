@@ -8,6 +8,10 @@ final class IntSet {
     private boolean[] elementsPresent;
     private static int maxValue = 1000;
 
+    public boolean[] getElements() {
+        return this.elementsPresent;
+    }
+
     /**
      * this function logs errors in error.txt file
      * @param e exception

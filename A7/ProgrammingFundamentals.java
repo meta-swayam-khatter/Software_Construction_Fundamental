@@ -29,6 +29,7 @@ class SparceMatrix {
         this.rows = rows;
         this.columns = columns;
         this.elements = List.copyOf(elements);
+        
     }
 
     public SparceMatrix transpose() {
@@ -73,29 +74,13 @@ class SparceMatrix {
             for(int[] element : elements) {
                 sumMap.put(element[0] + ", " + element[1], element[2]);
             }
-            System.out.println("First.................");
-            for(Map.Entry<String, Integer> entry : sumMap.entrySet()) {
-                System.out.println("String: " + entry.getKey() + "  Value: " + entry.getValue());
-            }
             for(int[] otherElement : matrix.elements) {
-                sumMap.put(otherElement[0] + ", " + otherElement[1], sumMap.getOrDefault(otherElement[0] + ", " + otherElement[1], 0) + otherElement[2]);
-                // sumMap.merge(otherElement[0] + ", " + otherElement[1], otherElement[2], Integer::sum);
-            }
-            System.out.println("Second.................");
-            for(Map.Entry<String, Integer> entry : sumMap.entrySet()) {
-                System.out.println("String: " + entry.getKey() + "  Value: " + entry.getValue());
+                sumMap.merge(otherElement[0] + ", " + otherElement[1], otherElement[2], Integer::sum);
             }
             List<int[]> result = new ArrayList<>();
             for(Map.Entry<String, Integer> entry : sumMap.entrySet()) {
                 String[] key = entry.getKey().split(", ");
                 result.add(new int[]{Integer.parseInt(key[0]), Integer.parseInt(key[1]), entry.getValue()});
-            }
-            System.out.println("Third result.................");
-            for(int[] res : result) {
-                for(int r : res) {
-                    System.out.print(r + " ");
-                }
-                System.out.println();
             }
             return new SparceMatrix(rows, columns, result);
         } catch (Exception e) {
@@ -123,7 +108,7 @@ class SparceMatrix {
                 String[] key = entry.getKey().split(", ");
                 result.add(new int[]{Integer.parseInt(key[0]), Integer.parseInt(key[1]), entry.getValue()});
             }
-            return new SparceMatrix(rows, columns, result);
+            return new SparceMatrix(rows, matrix.columns, result);
         } catch (Exception e) {
             logError(e);
             return new SparceMatrix(rows, columns, elements);
@@ -153,36 +138,38 @@ class SparceMatrix {
 public class ProgrammingFundamentals {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        // List<int[]> elements = new ArrayList<>();
+        List<int[]> elements = new ArrayList<>();
 
-        // System.out.print("Enter the number of Rows: ");
-        // int row = sc.nextInt();
-        // System.out.print("Enter the number of Columns: ");
-        // int column = sc.nextInt();
+        System.out.print("Enter the number of Rows: ");
+        int row = sc.nextInt();
+        System.out.print("Enter the number of Columns: ");
+        int column = sc.nextInt();
 
-        // System.out.print("Enter the number of Non-Zero elements in the matrix: ");
-        // int num = sc.nextInt();
-        // for(int index = 0; index<num; index++) {
-        //     System.out.print("Enter the row of element " + (index+1) + ": ");
-        //     int r = sc.nextInt();
-        //     System.out.print("Enter the column of element " + (index+1) + ": ");
-        //     int c = sc.nextInt();
-        //     System.out.print("Enter the value of element " + (index+1) + ": ");
-        //     int val = sc.nextInt();
+        System.out.print("Enter the number of Non-Zero elements in the matrix: ");
+        int num = sc.nextInt();
+        for(int index = 0; index<num; index++) {
+            System.out.print("Enter the row of element " + (index+1) + ": ");
+            int r = sc.nextInt();
+            System.out.print("Enter the column of element " + (index+1) + ": ");
+            int c = sc.nextInt();
+            System.out.print("Enter the value of element " + (index+1) + ": ");
+            int val = sc.nextInt();
 
-        //     elements.add(new int[]{r,c,val});
-        // }
+            elements.add(new int[]{r,c,val});
+        }
 
-        // SparceMatrix obj1 = new SparceMatrix(row, column, elements);
-        List<int[]> ls = new ArrayList<>();
-        ls.add(new int[]{0,4,9});
-        ls.add(new int[]{1,1,8});
-        ls.add(new int[]{2,0,4});
-        ls.add(new int[]{2,3,2});
-        ls.add(new int[]{3,5,5});
-        ls.add(new int[]{4,2,2});
-        SparceMatrix obj1 = new SparceMatrix(5, 6, ls);
-        SparceMatrix obj2 = new SparceMatrix(5, 6, ls);
+        SparceMatrix obj1 = new SparceMatrix(row, column, elements);
+
+        int r, c, val;
+        // List<int[]> ls = new ArrayList<>();
+        // ls.add(new int[]{0,4,9});
+        // ls.add(new int[]{1,1,8});
+        // ls.add(new int[]{2,0,4});
+        // ls.add(new int[]{2,3,2});
+        // ls.add(new int[]{3,5,5});
+        // ls.add(new int[]{4,2,2});
+        // SparceMatrix obj1 = new SparceMatrix(5, 6, ls);
+        // SparceMatrix obj2 = new SparceMatrix(5, 6, ls);
 
         while(true) {
             System.out.println("Enter your Choice: \n1. Transpose matrix\n2. Check if matrix is symetric\n3. Add matrix\n4. Multiply matrix\n0. Exit");
@@ -207,54 +194,54 @@ public class ProgrammingFundamentals {
                     break;
 
                 case 3:
-                    // System.out.print("Enter the number of Rows: ");
-                    // row = sc.nextInt();
-                    // System.out.print("Enter the number of Columns: ");
-                    // column = sc.nextInt();
+                    System.out.print("Enter the number of Rows: ");
+                    row = sc.nextInt();
+                    System.out.print("Enter the number of Columns: ");
+                    column = sc.nextInt();
             
-                    // System.out.print("Enter the number of Non-Zero elements in the matrix: ");
-                    // num = sc.nextInt();
-                    // for(int index = 0; index<num; index++) {
-                    //     System.out.print("Enter the row of element " + (index+1) + ": ");
-                    //     int r = sc.nextInt();
-                    //     System.out.print("Enter the column of element " + (index+1) + ": ");
-                    //     int c = sc.nextInt();
-                    //     System.out.print("Enter the value of element " + (index+1) + ": ");
-                    //     int val = sc.nextInt();
+                    System.out.print("Enter the number of Non-Zero elements in the matrix: ");
+                    num = sc.nextInt();
+                    List<int[]> elements2 = new ArrayList<>();
+                    for(int index = 0; index<num; index++) {
+                        System.out.print("Enter the row of element " + (index+1) + ": ");
+                        r = sc.nextInt();
+                        System.out.print("Enter the column of element " + (index+1) + ": ");
+                        c = sc.nextInt();
+                        System.out.print("Enter the value of element " + (index+1) + ": ");
+                        val = sc.nextInt();
             
-                    //     elements.add(new int[]{r,c,val});
-                    // }
+                        elements2.add(new int[]{r,c,val});
+                    }
             
-                    // SparceMatrix obj2 = new SparceMatrix(row, column, elements);
+                    SparceMatrix obj2 = new SparceMatrix(row, column, elements2);
 
-                    SparceMatrix.printSparce(obj2);
                     SparceMatrix result = obj1.add(obj2);
                     SparceMatrix.printSparce(result);
                     break;
 
                 case 4:
-                    // System.out.print("Enter the number of Rows: ");
-                    // row = sc.nextInt();
-                    // System.out.print("Enter the number of Columns: ");
-                    // column = sc.nextInt();
+                    System.out.print("Enter the number of Rows: ");
+                    row = sc.nextInt();
+                    System.out.print("Enter the number of Columns: ");
+                    column = sc.nextInt();
             
-                    // System.out.print("Enter the number of Non-Zero elements in the matrix: ");
-                    // num = sc.nextInt();
-                    // for(int index = 0; index<num; index++) {
-                    //     System.out.print("Enter the row of element " + (index+1) + ": ");
-                    //     int r = sc.nextInt();
-                    //     System.out.print("Enter the column of element " + (index+1) + ": ");
-                    //     int c = sc.nextInt();
-                    //     System.out.print("Enter the value of element " + (index+1) + ": ");
-                    //     int val = sc.nextInt();
+                    System.out.print("Enter the number of Non-Zero elements in the matrix: ");
+                    num = sc.nextInt();
+                    List<int[]> elements3 = new ArrayList<>();
+                    for(int index = 0; index<num; index++) {
+                        System.out.print("Enter the row of element " + (index+1) + ": ");
+                        r = sc.nextInt();
+                        System.out.print("Enter the column of element " + (index+1) + ": ");
+                        c = sc.nextInt();
+                        System.out.print("Enter the value of element " + (index+1) + ": ");
+                        val = sc.nextInt();
             
-                    //     elements.add(new int[]{r,c,val});
-                    // }
+                        elements3.add(new int[]{r,c,val});
+                    }
             
-                    // obj2 = new SparceMatrix(row, column, elements);
+                    obj2 = new SparceMatrix(row, column, elements3);
 
-                    SparceMatrix.printSparce(obj1);
-                    result = obj1.multiply(obj1);
+                    result = obj1.multiply(obj2);
                     SparceMatrix.printSparce(result);
                     break;
                     

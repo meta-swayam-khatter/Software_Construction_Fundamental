@@ -13,11 +13,19 @@ public class Main {
         Shape polygon = ShapeFactory.creatShape(Shape.ShapeType.POLYGON, new Point(5, 5), Arrays.asList(), Arrays.asList(new Point(5, 10), new Point(10, 10), new Point(10, 5)));
 
         screen.addShape(polygon);
+        screen.addShape(square);
+        screen.addShape(rectangle);
+        screen.addShape(triangle);
+        screen.addShape(circle);
 
-        System.out.println("Area: " + polygon.getArea());
-        System.out.println("Perimeter: " + polygon.getPerimeter());
-        System.out.println("Is point enclosed (7.5,7.5): " + polygon.isPointEnclosed(new Point(7.5, 7.5)));
-        System.out.println("Origin: " + polygon.getOrigin().getX() + ", " + polygon.getOrigin().getY());
-        System.out.println("Shapes enclosing (3,3): " + screen.getShapesEnclosingPoint(new Point(3, 3)));
+        for(Shape shape : screen.getShapesSortedBy("area")) {
+            System.out.println(shape.getArea());
+        }
+
+        // System.out.println("Area: " + polygon.getArea());
+        // System.out.println("Perimeter: " + polygon.getPerimeter());
+        // System.out.println("Is point enclosed (7.5,7.5): " + polygon.isPointEnclosed(new Point(7.5, 7.5)));
+        // System.out.println("Origin: " + polygon.getOrigin().getX() + ", " + polygon.getOrigin().getY());
+        // System.out.println("Shapes enclosing (3,3): " + screen.getShapesEnclosingPoint(new Point(3, 3)));
     }
 }

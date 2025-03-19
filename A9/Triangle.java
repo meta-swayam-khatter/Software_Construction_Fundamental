@@ -1,12 +1,14 @@
 package A9;
 
 public class Triangle implements Shape {
+    private final Shape.ShapeType type;
     private final Point origin;
     private final Point p1;
     private final Point p2;
     private final long timestamp;
 
     public Triangle(Point origin, Point p1, Point p2) {
+        this.type = Shape.ShapeType.TRIANGLE;
         this.origin = origin;
         this.p1 = p1;
         this.p2 = p2;
@@ -54,5 +56,10 @@ public class Triangle implements Shape {
 
     public long getTimeStamp() {
         return timestamp;
+    }
+
+    @Override
+    public Shape.ShapeType getShapeType() {
+        return type;
     }
 }

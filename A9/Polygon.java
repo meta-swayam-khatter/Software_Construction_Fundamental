@@ -3,12 +3,14 @@ package A9;
 import java.util.List;
 
 public class Polygon implements Shape {
+    private final Shape.ShapeType type;
     private final Point origin;
     private final List<Point> points;
     private final long timestamp;
     private final int numberOfPoints;
 
     public Polygon(Point origin, List<Point> points) {
+        this.type = Shape.ShapeType.POLYGON;
         this.origin = origin;
         this.points = points;
         this.numberOfPoints = points.size();
@@ -68,5 +70,10 @@ public class Polygon implements Shape {
 
     public long getTimeStamp() {
         return timestamp;
+    }
+
+    @Override
+    public Shape.ShapeType getShapeType() {
+        return type;
     }
 }

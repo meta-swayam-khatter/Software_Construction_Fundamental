@@ -1,12 +1,14 @@
 package A9;
 
 public class Rectangle implements Shape {
+    private final Shape.ShapeType type;
     private final Point origin;
     private final Double length;
     private final Double height;
     private final long timestamp;
 
     public Rectangle(Point origin, Double length, Double height) {
+        this.type = Shape.ShapeType.RECTANGLE;
         this.origin = origin;
         this.length = length;
         this.height = height;
@@ -35,5 +37,10 @@ public class Rectangle implements Shape {
 
     public long getTimeStamp() {
         return timestamp;
+    }
+
+    @Override
+    public Shape.ShapeType getShapeType() {
+        return type;
     }
 }

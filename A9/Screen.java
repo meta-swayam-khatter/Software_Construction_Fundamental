@@ -17,7 +17,7 @@ public class Screen {
     }
 
     public void deleteShapesByType(Shape.ShapeType type) {
-        shapes.removeIf(shape -> shape.getClass().getSimpleName().toUpperCase().equals(type.name()));
+        shapes.removeIf(shape -> shape.getShapeType().equals(type));
     }
 
     public List<Shape> getShapesSortedBy(String criteria) {

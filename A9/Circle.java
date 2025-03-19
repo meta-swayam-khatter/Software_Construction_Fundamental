@@ -1,11 +1,13 @@
 package A9;
 
 public class Circle implements Shape {
+    public final Shape.ShapeType type;
     private final Point center;
     private final double radius;
     private final long timestamp;
 
     public Circle(Point center, double radius) {
+        this.type = Shape.ShapeType.CIRCLE;
         this.center = center;
         this.radius = radius;
         this.timestamp = System.currentTimeMillis();
@@ -33,5 +35,10 @@ public class Circle implements Shape {
 
     public long getTimeStamp() {
         return timestamp;
+    }
+
+    @Override
+    public Shape.ShapeType getShapeType() {
+        return type;
     }
 }

@@ -144,12 +144,12 @@ class FixXY {
 
 public class TestingAndJunit3 {
     public static void main(String[] args) {
-        int[] arr = new int[]{};
         Scanner sc = new Scanner(System.in);
         FixXY obj = new FixXY();
-
+        
         System.out.print("Enter the number of elements in array: ");
         int num = sc.nextInt();
+        int[] arr = new int[num];
         System.out.println("Enter the elements of array: ");
 
         for(int index=0; index<num; index++) {

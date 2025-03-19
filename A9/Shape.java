@@ -7,4 +7,5 @@ public interface Shape {
     double getPerimeter();
     Point getOrigin();
     boolean isPointEnclosed(Point p);
+    Shape.ShapeType getShapeType();
 }

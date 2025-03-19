@@ -9,8 +9,8 @@ public class InheritanceAndComposition {
     public static void main(String[] args) {
         Organization org = new Organization("Metacube");
         Management dept1 = new Management("Manage");
-        HR hr1 = new HR("Nikita", 10000, 2000, 1200);
-        HR hr2 = new HR("Nikki", 10000, 2000, 1200);
+        HR hr1 = new HR("Nikita", 2000000, 210000, 35000);
+        HR hr2 = new HR("Nikki", 1040000, 160000, 22000);
 
         org.addDepartment(dept1);
         dept1.join(hr1);

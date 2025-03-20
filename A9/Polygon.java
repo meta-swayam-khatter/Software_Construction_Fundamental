@@ -9,6 +9,11 @@ public class Polygon implements Shape {
     private final long timestamp;
     private final int numberOfPoints;
 
+    /**
+     * This is a constructor function which creates a new Polygon with the provided attributes when an instance of this class is created 
+     * @param origin origin point of the polygon
+     * @param points List of points which creates all the points of the polygon except origin
+     */
     public Polygon(Point origin, List<Point> points) {
         this.type = Shape.ShapeType.POLYGON;
         this.origin = origin;
@@ -21,8 +26,8 @@ public class Polygon implements Shape {
     public double getArea() {
         try {
             double area = (origin.getX() + points.get(0).getX())*(origin.getY() - points.get(0).getY());
-            for(int index=0; index<points.size()-1; index++) {
-                area += (points.get(index).getX() + points.get(index+1).getX())*(points.get(index).getY() - points.get(index+1).getY());
+            for(int pointIndex=0; pointIndex<points.size()-1; pointIndex++) {
+                area += (points.get(pointIndex).getX() + points.get(pointIndex+1).getX())*(points.get(pointIndex).getY() - points.get(pointIndex+1).getY());
             }
             area += (points.get(numberOfPoints-1).getX() + origin.getX())*(points.get(numberOfPoints-1).getY() - origin.getY());
             return Math.abs(area / 2.0);
@@ -35,8 +40,8 @@ public class Polygon implements Shape {
     public double getPerimeter() {
         try {
             double perimeter = origin.distanceFrom(points.get(0));
-            for(int index=0; index<numberOfPoints-1; index++) {
-                perimeter += points.get(index).distanceFrom(points.get(index+1));
+            for(int pointIndex=0; pointIndex<numberOfPoints-1; pointIndex++) {
+                perimeter += points.get(pointIndex).distanceFrom(points.get(pointIndex+1));
             }
             perimeter += points.get(numberOfPoints-1).distanceFrom(origin);
             return perimeter;
@@ -46,17 +51,17 @@ public class Polygon implements Shape {
     }
 
     @Override
-    public boolean isPointEnclosed(Point p) {
+    public boolean isPointEnclosed(Point point) {
         try {
             Polygon poly = new Polygon(origin, points);
-            Triangle t = new Triangle(origin, p, points.get(0));
-            double areaOfTriangles = t.getArea();
-            for(int index=0; index<numberOfPoints-1; index++) {
-                t = new Triangle(points.get(index), p, points.get(index+1));
-                areaOfTriangles += t.getArea();
+            Triangle triangle = new Triangle(origin, point, points.get(0));
+            double areaOfTriangles = triangle.getArea();
+            for(int pointIndex=0; pointIndex<numberOfPoints-1; pointIndex++) {
+                triangle = new Triangle(points.get(pointIndex), point, points.get(pointIndex+1));
+                areaOfTriangles += triangle.getArea();
             }
-            t = new Triangle(origin, p, points.get(numberOfPoints-1));
-            areaOfTriangles += t.getArea();
+            triangle = new Triangle(origin, point, points.get(numberOfPoints-1));
+            areaOfTriangles += triangle.getArea();
             return (poly.getArea() == (int)(areaOfTriangles*100)/100.0);
         } catch (Exception e) {
             return false;
@@ -68,6 +73,10 @@ public class Polygon implements Shape {
         return origin;
     }
 
+    /**
+     * this function finds the timestamp at which the Polygon was created
+     * @return timestamp of the polygon
+     */
     public long getTimeStamp() {
         return timestamp;
     }

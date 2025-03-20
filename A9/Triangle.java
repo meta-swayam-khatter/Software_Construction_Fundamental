@@ -3,23 +3,29 @@ package A9;
 public class Triangle implements Shape {
     private final Shape.ShapeType type;
     private final Point origin;
-    private final Point p1;
-    private final Point p2;
+    private final Point point1;
+    private final Point point2;
     private final long timestamp;
 
-    public Triangle(Point origin, Point p1, Point p2) {
+    /**
+     * This is a constructor function which creates a new Triangle with the provided attributes when an instance of this class is created
+     * @param origin the origin point of the triangle
+     * @param point1 one of the points of the triangle other then the origin
+     * @param point2 another point of the triangle other then the origin
+     */
+    public Triangle(Point origin, Point point1, Point point2) {
         this.type = Shape.ShapeType.TRIANGLE;
         this.origin = origin;
-        this.p1 = p1;
-        this.p2 = p2;
+        this.point1 = point1;
+        this.point2 = point2;
         this.timestamp = System.currentTimeMillis();
     }
 
     @Override
     public double getArea() {
         try {
-            double s = (p1.distanceFrom(p2) + p1.distanceFrom(origin) + p2.distanceFrom(origin))/2;
-            return Math.sqrt(s*(s-p1.distanceFrom(p2))*(s-p1.distanceFrom(origin))*(s-p2.distanceFrom(origin)));
+            double s = (point1.distanceFrom(point2) + point1.distanceFrom(origin) + point2.distanceFrom(origin))/2;
+            return Math.sqrt(s*(s-point1.distanceFrom(point2))*(s-point1.distanceFrom(origin))*(s-point2.distanceFrom(origin)));
         } catch (Exception e) {
             return -1;
         }
@@ -28,21 +34,21 @@ public class Triangle implements Shape {
     @Override
     public double getPerimeter() {
         try {
-            return (p1.distanceFrom(p2) + p1.distanceFrom(origin) + p2.distanceFrom(origin));
+            return (point1.distanceFrom(point2) + point1.distanceFrom(origin) + point2.distanceFrom(origin));
         } catch (Exception e) {
             return -1;
         }
     }
 
     @Override
-    public boolean isPointEnclosed(Point p) {
+    public boolean isPointEnclosed(Point point) {
         try {
-            Triangle t = new Triangle(origin, p1, p2);
-            Triangle t1 = new Triangle(origin, p1, p);
-            Triangle t2 = new Triangle(p1, p2, p);
-            Triangle t3 = new Triangle(p2, origin, p);
+            Triangle mainTriangle = new Triangle(origin, point1, point2);
+            Triangle miniTriangle1 = new Triangle(origin, point1, point);
+            Triangle miniTriangle2 = new Triangle(point1, point2, point);
+            Triangle miniTriangle3 = new Triangle(point2, origin, point);
 
-            if(t.getArea() == (t1.getArea() + t2.getArea() + t3.getArea())) return true;
+            if(mainTriangle.getArea() == (miniTriangle1.getArea() + miniTriangle2.getArea() + miniTriangle3.getArea())) return true;
             return false;
         } catch (Exception e) {
             return false;
@@ -54,6 +60,10 @@ public class Triangle implements Shape {
         return origin;
     }
 
+    /**
+     * this function finds the timestamp at which the Triangle was created
+     * @return timestamp of the triangle
+     */
     public long getTimeStamp() {
         return timestamp;
     }

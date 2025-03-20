@@ -7,6 +7,12 @@ public class Rectangle implements Shape {
     private final Double height;
     private final long timestamp;
 
+    /**
+     * This is a constructor function which creates a new Rectangle with the provided attributes when an instance of this class is created
+     * @param origin origin point of the rectangle
+     * @param length length of the rectangle
+     * @param height height of the rectangle
+     */
     public Rectangle(Point origin, Double length, Double height) {
         this.type = Shape.ShapeType.RECTANGLE;
         this.origin = origin;
@@ -31,10 +37,14 @@ public class Rectangle implements Shape {
     }
 
     @Override
-    public boolean isPointEnclosed(Point p) {
-        return p.getX() >= origin.getX() && p.getX() <= origin.getX() + length && p.getY() >= origin.getY() && p.getY() >= origin.getY() + height;
+    public boolean isPointEnclosed(Point point) {
+        return point.getX() >= origin.getX() && point.getX() <= origin.getX() + length && point.getY() >= origin.getY() && point.getY() >= origin.getY() + height;
     }
 
+    /**
+     * this function finds the timestamp at which the Rectangle was created
+     * @return timestamp of the rectangle
+     */
     public long getTimeStamp() {
         return timestamp;
     }

@@ -6,6 +6,11 @@ public class Square implements Shape {
     private final double side;
     private final long timestamp;
 
+    /**
+     * This is a constructor function which creates a new Square with the provided attributes when an instance of this class is created
+     * @param origin origin point of the square
+     * @param side length of the side of the square
+     */
     public Square(Point origin, double side) {
         this.type = Shape.ShapeType.SQUARE;
         this.origin = origin;
@@ -29,10 +34,14 @@ public class Square implements Shape {
     }
 
     @Override
-    public boolean isPointEnclosed(Point p) {
-        return p.getX() >= origin.getX() && p.getX() <= origin.getX() + side && p.getY() >= origin.getY() && p.getY() >= origin.getY() + side;
+    public boolean isPointEnclosed(Point point) {
+        return point.getX() >= origin.getX() && point.getX() <= origin.getX() + side && point.getY() >= origin.getY() && point.getY() >= origin.getY() + side;
     }
 
+    /**
+     * this function finds the timestamp at which the Square was created
+     * @return timestamp of the square
+     */
     public long getTimeStamp() {
         return timestamp;
     }

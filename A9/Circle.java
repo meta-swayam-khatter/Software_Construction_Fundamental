@@ -6,6 +6,11 @@ public class Circle implements Shape {
     private final double radius;
     private final long timestamp;
 
+    /**
+     * This is a constructor function which creates a new Circle with the provided attributes when an instance of this class is created
+     * @param center origin / center point of the circle
+     * @param radius radius of the circle
+     */
     public Circle(Point center, double radius) {
         this.type = Shape.ShapeType.CIRCLE;
         this.center = center;
@@ -29,10 +34,14 @@ public class Circle implements Shape {
     }
 
     @Override
-    public boolean isPointEnclosed(Point p) {
-        return center.distanceFrom(p) <= radius;
+    public boolean isPointEnclosed(Point point) {
+        return center.distanceFrom(point) <= radius;
     }
 
+    /**
+     * this function finds the timestamp at which the Circle was created
+     * @return timestamp of the circle
+     */
     public long getTimeStamp() {
         return timestamp;
     }

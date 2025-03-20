@@ -161,15 +161,6 @@ public class ProgrammingFundamentals {
         SparceMatrix obj1 = new SparceMatrix(row, column, elements);
 
         int r, c, val;
-        // List<int[]> ls = new ArrayList<>();
-        // ls.add(new int[]{0,4,9});
-        // ls.add(new int[]{1,1,8});
-        // ls.add(new int[]{2,0,4});
-        // ls.add(new int[]{2,3,2});
-        // ls.add(new int[]{3,5,5});
-        // ls.add(new int[]{4,2,2});
-        // SparceMatrix obj1 = new SparceMatrix(5, 6, ls);
-        // SparceMatrix obj2 = new SparceMatrix(5, 6, ls);
 
         while(true) {
             System.out.println("Enter your Choice: \n1. Transpose matrix\n2. Check if matrix is symetric\n3. Add matrix\n4. Multiply matrix\n0. Exit");
